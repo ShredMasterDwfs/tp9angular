@@ -32,10 +32,9 @@ export class EmployeesComponent implements OnInit {
 
   getListOfEmployees(){
     this._employeeService.getEmployeesList().subscribe(data => {
-      console.log(data);
       this.listEmployees = data;
     }, error => {
-      console.log(error);
+      this.toastr.error('Ops! An error has ocurred :(' ,'Employees Data');
     })
   }
 
@@ -52,8 +51,7 @@ export class EmployeesComponent implements OnInit {
         this.getListOfEmployees();
         this.form.reset();      
       }, error => {
-        this.toastr.error('Ops! An error has ocurred :(' ,'Add Employee')
-        console.log(error);
+        this.toastr.error('Ops! An error has ocurred :(' ,'Add Employee');
       })
     } else {
         employee.EmployeeId = this.id;
@@ -77,8 +75,7 @@ export class EmployeesComponent implements OnInit {
           this.toastr.error('Employee deleted successfully!' ,'Delete Employee');
           this.getListOfEmployees();
         }, error => {
-          this.toastr.error('Ops! An error has ocurred :(' ,'Delete Employee')
-          console.log(error);
+          this.toastr.error('Ops! An error has ocurred :(' ,'Delete Employee');
         })
       } else {
           this.getListOfEmployees();
@@ -86,7 +83,6 @@ export class EmployeesComponent implements OnInit {
   }
 
   updateEmployee(employee: any){
-    console.log(employee);
     this.action = 'update';
     this.id = employee.EmployeeId;
 
