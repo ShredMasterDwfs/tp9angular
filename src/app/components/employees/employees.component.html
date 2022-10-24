@@ -17,7 +17,11 @@
 
                     <form [formGroup]="form" (ngSubmit)="addOrUpdateEmployee()">                         
                         <div class="input-group mb-3 mt-4">
-                            <span class="input-group-text">First and Last Name</span>
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-check" [class.green-icon]="this.form.get('firstName')?.valid"></i>
+                                &nbsp;First and&nbsp;
+                                <i class="fa-solid fa-check" [class.green-icon]="this.form.get('lastName')?.valid"></i>
+                                &nbsp;Last Name</span>
                             <input formControlName="firstName" type="text" aria-label="First name" maxlength="10" class="form-control">
                             <input formControlName="lastName" type="text" aria-label="Last name" maxlength="20" class="form-control">
                         </div>                                              

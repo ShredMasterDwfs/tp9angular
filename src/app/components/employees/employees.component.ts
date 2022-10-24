@@ -70,13 +70,19 @@ export class EmployeesComponent implements OnInit {
   }
 
   deleteEmployee(id: number){
-    this._employeeService.deleteAnEmployee(id).subscribe(data => {
-      this.toastr.error('Employee deleted successfully!' ,'Delete Employee');
-      this.getListOfEmployees();
-    }, error => {
-      this.toastr.error('Ops! An error has ocurred :(' ,'Delete Employee')
-      console.log(error);
-    })
+
+    var result = confirm("Are you sure you want to delete this employee?");
+      if (result == true) {
+        this._employeeService.deleteAnEmployee(id).subscribe(data => {
+          this.toastr.error('Employee deleted successfully!' ,'Delete Employee');
+          this.getListOfEmployees();
+        }, error => {
+          this.toastr.error('Ops! An error has ocurred :(' ,'Delete Employee')
+          console.log(error);
+        })
+      } else {
+          this.getListOfEmployees();
+      }    
   }
 
   updateEmployee(employee: any){
